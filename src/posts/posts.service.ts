@@ -1,5 +1,6 @@
-import { Injectable, Logger, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { Get, Injectable, Logger, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { PostModel } from './posts/posts.interface';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 @Injectable()
 export class PostsService {
@@ -15,7 +16,8 @@ export class PostsService {
 
     private readonly logger = new Logger(PostsService.name);
 
-    
+    @Get()
+    @ApiOkResponse({ description: 'Posts retrieved successfully.'})
     public findAll(): Array<PostModel> {
         return this.posts;
       }
